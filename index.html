@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SewaMobil Hasbi - Sewa Mobil Nyaman & Terpercaya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8fafc;
+      color: #334155;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Container */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      padding: 15px 0;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logo span {
+      color: #fbbf24;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 8px 16px;
+      border-radius: 25px;
+    }
+
+    .nav-links li a::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-links li a:hover::before,
+    .nav-links li a.active::before {
+      width: 100%;
+    }
+
+    .nav-links li a:hover {
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.1);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      color: white;
+      text-align: center;
+      max-width: 700px;
+      padding: 40px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero-content h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff, #e2e8f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-content p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #1e293b;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(251, 191, 36, 0.4);
+    }
+    .btn-card {
+     pointer-events: auto;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Floating Elements */
+    .floating-element {
+      position: absolute;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-element:nth-child(1) {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-element:nth-child(2) {
+      top: 60%;
+      right: 15%;
+      animation-delay: 2s;
+    }
+
+    .floating-element:nth-child(3) {
+      bottom: 20%;
+      left: 20%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Section */
+    .section {
+      padding: 100px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 36px;
+      color: #1e293b;
+      margin-bottom: 15px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: #64748b;
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      border-radius: 2px;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      padding: 80px 0;
+      margin: 60px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      color: white;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    /* Mobil Cards */
+   .mobil-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: stretch; /* ini memastikan setiap item dalam grid punya tinggi seragam */
+    }
+ 
+    .mobil-card {
+   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* penting agar semua kartu ikut tinggi maksimal */
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+
+    .mobil-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent, rgba(251, 191, 36, 0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobil-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .mobil-card:hover::before {
+      opacity: 1;
+    }
+
+    .mobil-image {
+      height: 200px;
+      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mobil-card img {
+      width: 90%;
+      height: 150px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .mobil-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .mobil-info {
+      padding: 25px;
+    }
+
+    .mobil-card h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    .mobil-features {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    .feature i {
+      color: #fbbf24;
+    }
+
+    .harga {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 20px;
+    }
+
+    .harga span {
+      font-size: 16px;
+      color: #64748b;
+      font-weight: 400;
+    }
+
+    .btn-card {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(30, 41, 59, 0.3);
+    }
+
+    /* Why Choose Us */
+    .features-section {
+      background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+      padding: 100px 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 30px;
+      color: white;
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      color: #1e293b;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .feature-card p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #fbbf24;
+    }
+
+    .footer-section p,
+    .footer-section li {
+      color: #cbd5e1;
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+      color: #fbbf24;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .contact-info i {
+      color: #fbbf24;
+      width: 20px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        gap: 15px;
+      }
+
+      .nav-links li a {
+        padding: 5px 10px;
+        font-size: 14px;
+      }
+
+      .hero-content h1 {
+        font-size: 32px;
+      }
+
+      .hero-content p {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .mobil-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .floating-element {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+      }
+
+      .hero-content {
+        padding: 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 24px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-number {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">SewaMobil<span> Hasbi</span></div>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="#" class="active">Beranda</a></li>
+          <li><a href="#mobil">Mobil</a></li>
+          <li><a href="#features">Layanan</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="floating-element">
+      <i class="fas fa-car" style="font-size: 60px;"></i>
+    </div>
+    <div class="floating-element">
+      <i class="fas fa-key" style="font-size: 40px;"></i>
+    </div>
+    <div class="floating-element">
+      <i class="fas fa-road" style="font-size: 50px;"></i>
+    </div>
+    
+    <div class="hero-content">
+      <h1>Sewa Mobil Terbaik di Jakarta</h1>
+      <p>Nikmati perjalanan nyaman dengan armada terpilih, harga terjangkau, dan pelayanan terpercaya 24/7</p>
+      <div class="hero-buttons">
+        <a href="#mobil" class="btn">
+          <i class="fas fa-car"></i>
+          Lihat Mobil
+        </a>
+       <section id="mobil" class="mobil-section">
+  <div class="container">
+    <!-- Isi daftar mobil -->
+  </div>
+</section>
+
+      </div>
+    </div>
+  </section>
+  <div class="mobil-grid">
+  <!-- Toyota Avanza -->
+  <div class="mobil-card">
+    <div class="mobil-image">
+      <img src="Gambar IMK/avanza-g-white_optimized.png" alt="Toyota Avanza">
+    </div>
+    <div class="mobil-info" style="position: relative; z-index: 2;">
+      <h3>Toyota Avanza</h3>
+      <div class="mobil-features">
+        <div class="feature">
+          <i class="fas fa-users"></i><span>7 Penumpang</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-cog"></i><span>Manual</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-gas-pump"></i><span>Bensin</span>
+        </div>
+      </div>
+      <p class="harga">Rp 400.000 <span>/ hari</span></p>
+      <a href="https://wa.me/62895333150013?text=Halo%2C%20saya%20ingin%20sewa%20Toyota%20Avanza.%20Apakah%20tersedia%3F" target="_blank" class="btn-card">
+        <i class="fas fa-car"></i> Sewa Sekarang
+      </a>
+    </div>
+  </div>
+
+  <!-- Mitsubishi Pajero -->
+  <div class="mobil-card">
+    <div class="mobil-image">
+      <img src="Gambar IMK/pajero.jpeg" alt="Mitsubishi Pajero">
+    </div>
+    <div class="mobil-info" style="position: relative; z-index: 2;">
+      <h3>Mitsubishi Pajero</h3>
+      <div class="mobil-features">
+        <div class="feature">
+          <i class="fas fa-users"></i><span>7 Penumpang</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-cog"></i><span>Automatic</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-gas-pump"></i><span>Solar</span>
+        </div>
+      </div>
+      <p class="harga">Rp 700.000 <span>/ hari</span></p>
+      <a href="https://wa.me/62895333150013?text=Halo%2C%20saya%20ingin%20sewa%20Mitsubishi%20Pajero.%20Apakah%20tersedia%3F" target="_blank" class="btn-card">
+        <i class="fas fa-car"></i> Sewa Sekarang
+      </a>
+    </div>
+  </div>
+
+  <!-- Toyota Alphard -->
+  <div class="mobil-card">
+    <div class="mobil-image">
+      <img src="Gambar IMK/alphard.jpeg" alt="Toyota Alphard">
+    </div>
+    <div class="mobil-info" style="position: relative; z-index: 2;">
+      <h3>Toyota Alphard</h3>
+      <div class="mobil-features">
+        <div class="feature">
+          <i class="fas fa-users"></i><span>8 Penumpang</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-cog"></i><span>Automatic</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-star"></i><span>Premium</span>
+        </div>
+      </div>
+      <p class="harga">Rp 1.200.000 <span>/ hari</span></p>
+      <a href="https://wa.me/62895333150013?text=Halo%2C%20saya%20ingin%20sewa%20Toyota%20Alphard.%20Apakah%20tersedia%3F" target="_blank" class="btn-card">
+        <i class="fas fa-car"></i> Sewa Sekarang
+      </a>
+    </div>
+  </div>
+
+  <!-- Honda HR-V -->
+  <div class="mobil-card">
+    <div class="mobil-image">
+      <img src="Gambar IMK/Hrv.jpeg" alt="Honda HR-V">
+    </div>
+    <div class="mobil-info" style="position: relative; z-index: 2;">
+      <h3>Honda HR-V</h3>
+      <div class="mobil-features">
+        <div class="feature">
+          <i class="fas fa-users"></i><span>5 Penumpang</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-cog"></i><span>CVT</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-gas-pump"></i><span>Bensin</span>
+        </div>
+      </div>
+      <p class="harga">Rp 550.000 <span>/ hari</span></p>
+      <a href="https://wa.me/62895333150013?text=Halo%2C%20saya%20ingin%20sewa%20Honda%20HR-V.%20Apakah%20tersedia%3F" target="_blank" class="btn-card">
+        <i class="fas fa-car"></i> Sewa Sekarang
+      </a>
+    </div>
+  </div>
+</div>
+
+  <section id="features" class="features-section">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center;">Mengapa Pilih Kami?</h2>
+    </div>
+      <p class="section-subtitle">Kepuasan dan kenyamanan Anda adalah prioritas utama kami dalam setiap perjalanan</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Terpercaya & Aman</h3>
+          <p>Armada terawat dengan asuransi lengkap dan driver berpengalaman untuk keamanan perjalanan Anda</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>Layanan 24/7</h3>
+          <p>Tim customer service siap membantu Anda kapan saja, termasuk layanan darurat di perjalanan</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-money-bill-wave"></i>
+          </div>
+          <h3>Harga Terjangkau</h3>
+          <p>Penawaran harga terbaik tanpa biaya tersembunyi, dengan berbagai paket sesuai kebutuhan</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-car-alt"></i>
+          </div>
+          <h3>Armada Lengkap</h3>
+          <p>Berbagai pilihan mobil dari ekonomis hingga premium untuk segala kebutuhan perjalanan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>SewaMobil Hasbi</h3>
+          <p>Penyedia layanan sewa mobil terpercaya di Jakarta dengan komitmen memberikan pengalaman perjalanan terbaik untuk setiap pelanggan.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Kontak Kami</h3>
+          <div class="contact-info">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Jl. Pulogadung No. 23, Jakarta Timur</span>
+          </div>
+          <div class="contact-info">
+            <i class="fas fa-phone"></i>
+            <span>0895-3331-50013</span>
+          </div>
+          <div class="contact-info">
+            <i class="fas fa-envelope"></i>
+            <span>info@sewamobilhasbi.com</span>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Layanan</h3>
+          <ul>
+            <li><a href="#">Sewa Harian</a></li>
+            <li><a href="#">Sewa Mingguan</a></li>
+            <li><a href="#">Sewa Bulanan</a></li>
+            <li><a href="#">Paket Wisata</a></li>
+            <li><a href="#">Layanan Driver</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Jam Operasional</h3>
+          <p><strong>Senin - Jumat:</strong> 07:00 - 21:00</p>
+          <p><strong>Sabtu - Minggu:</strong> 08:00 - 20:00</p>
+          <p><strong>Layanan Darurat:</strong> 24/7</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 SewaMobil Hasbi. All rights reserved. | Melayani dengan sepenuh hati</p>
+      </div>
+    </div>
+  </footer>
